@@ -1,3 +1,9 @@
+
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -15,8 +21,25 @@ public class VendasVIEW extends javax.swing.JFrame {
      */
     public VendasVIEW() {
         initComponents();
+       listarVendidos();
     }
+   public void listarVendidos() {
 
+    ProdutosDAO dao = new ProdutosDAO();
+    List<ProdutosDTO> lista = dao.listarVendidos();
+
+    DefaultTableModel model = (DefaultTableModel) jTabelaVendas.getModel();
+    model.setRowCount(0);
+
+    for (ProdutosDTO p : lista) {
+        model.addRow(new Object[]{
+            p.getId(),
+            p.getNome(),
+            p.getValor(),
+            p.getStatus()
+        });
+    }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,6 +72,11 @@ public class VendasVIEW extends javax.swing.JFrame {
 
         btnVoltarLVendas.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnVoltarLVendas.setText("Voltar");
+        btnVoltarLVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarLVendasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,6 +120,10 @@ public class VendasVIEW extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarLVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarLVendasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarLVendasActionPerformed
 
     /**
      * @param args the command line arguments
