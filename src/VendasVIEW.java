@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class VendasVIEW extends javax.swing.JFrame {
-
+//c
     /**
      * Creates new form VendasVIEW
      */
